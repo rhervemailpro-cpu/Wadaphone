@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wadaphone - Wooden Smartphones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Wadaphone</div>
+            <div class="language-selector">
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                    <option value="it">Italiano</option>
+                    <option value="de">Deutsch</option>
+                    <option value="pt">Português</option>
+                    <option value="lt">Lietuvių</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 data-i18n="hero_title">Wooden Phones. Natural Beauty.</h1>
+            <p data-i18n="hero_subtitle">Handcrafted wooden smartphones that feel as good as they look.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="products">
+            <div class="product-tile">
+                <div class="product-image samsung-preview"></div>
+                <h2 data-i18n="samsung_title">Wadaphone Samsung</h2>
+                <p data-i18n="samsung_desc">Inspired by Samsung's modern design</p>
+                
+                <div class="selector-group">
+                    <label data-i18n="color_label">Color:</label>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" data-product="samsung" data-color="natural" onclick="selectColor('samsung', 'natural')">
+                            <span data-i18n="natural_wood">Natural Wood</span>
+                        </button>
+                        <button class="toggle-btn" data-product="samsung" data-color="black" onclick="selectColor('samsung', 'black')">
+                            <span data-i18n="black">Black</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="price">€49.99</div>
+                <button class="add-to-cart-btn" data-product="samsung" onclick="addToCart('samsung')">
+                    <span data-i18n="add_to_cart">Add to Cart</span>
+                </button>
+            </div>
+
+            <div class="product-tile">
+                <div class="product-image iphone-preview"></div>
+                <h2 data-i18n="iphone_title">Wadaphone iPhone</h2>
+                <p data-i18n="iphone_desc">Inspired by iPhone 13's elegant design</p>
+                
+                <div class="selector-group">
+                    <label data-i18n="color_label">Color:</label>
+                    <div class="toggle-group">
+                        <button class="toggle-btn active" data-product="iphone" data-color="natural" onclick="selectColor('iphone', 'natural')">
+                            <span data-i18n="natural_wood">Natural Wood</span>
+                        </button>
+                        <button class="toggle-btn" data-product="iphone" data-color="black" onclick="selectColor('iphone', 'black')">
+                            <span data-i18n="black">Black</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="price">€69.99</div>
+                <button class="add-to-cart-btn" data-product="iphone" onclick="addToCart('iphone')">
+                    <span data-i18n="add_to_cart">Add to Cart</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="payment-methods">
+            <h3 data-i18n="payment_title">Payment Methods</h3>
+            <div class="payment-tiles">
+                <button class="payment-tile" data-method="klarna" onclick="selectPayment('klarna')">
+                    <div class="payment-icon klarna-icon">K</div>
+                    <span>Klarna</span>
+                </button>
+                <button class="payment-tile" data-method="revolutpay" onclick="selectPayment('revolutpay')">
+                    <div class="payment-icon revolutpay-icon">R</div>
+                    <span>RevolutPay</span>
+                </button>
+                <button class="payment-tile" data-method="paypal" onclick="selectPayment('paypal')">
+                    <div class="payment-icon paypal-icon">P</div>
+                    <span>PayPal</span>
+                </button>
+                <button class="payment-tile" data-method="visa" onclick="selectPayment('visa')">
+                    <div class="payment-icon visa-icon">V</div>
+                    <span>Visa</span>
+                </button>
+                <button class="payment-tile" data-method="mastercard" onclick="selectPayment('mastercard')">
+                    <div class="payment-icon mastercard-icon">M</div>
+                    <span>Mastercard</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="shipping-info">
+            <div class="info-badge">
+                <span data-i18n="free_shipping">🌍 Free Shipping Worldwide</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Wadaphone. <span data-i18n="footer_text">Handcrafted with care.</span></p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
