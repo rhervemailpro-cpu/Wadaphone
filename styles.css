@@ -111,10 +111,10 @@ body {
 }
 
 .product-image {
-    width: 200px;
-    height: 300px;
+    width: 150px;
+    height: 320px;
     margin: 0 auto 30px;
-    border-radius: 16px;
+    border-radius: 28px;
     background: linear-gradient(135deg, #a0826d 0%, #8b7355 100%);
     display: flex;
     align-items: center;
@@ -150,31 +150,36 @@ body {
             rgba(0, 0, 0, 0.05) 2px
         );
     background-color: #a0826d;
+    box-shadow: 
+        inset -8px -8px 16px rgba(0, 0, 0, 0.3),
+        inset 8px 8px 16px rgba(255, 255, 255, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    perspective: 1000px;
 }
 
 .product-image::before {
     content: 'wdf';
     position: absolute;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.3);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.25);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     font-family: 'Courier New', monospace;
     z-index: 1;
-    bottom: 15px;
+    bottom: 20px;
 }
 
 .product-image.samsung-preview::after {
-    content: '📱';
-    z-index: 2;
-    animation: floatPhone 3s ease-in-out infinite;
+    content: '';
+    display: none;
 }
 
 .product-image.iphone-preview::after {
-    content: '🍎';
-    z-index: 2;
-    animation: floatPhone 3s ease-in-out infinite;
+    content: '';
+    display: none;
 }
 
 .product-image.black {
@@ -198,10 +203,17 @@ body {
             rgba(255, 255, 255, 0.05) 4px
         );
     background-color: #2d2d2d;
+    box-shadow: 
+        inset -8px -8px 16px rgba(0, 0, 0, 0.6),
+        inset 8px 8px 16px rgba(255, 255, 255, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .product-image.black::before {
     color: rgba(255, 255, 255, 0.15);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes rotatePhone {
