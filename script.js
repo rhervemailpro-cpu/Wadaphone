@@ -5,10 +5,15 @@ let selectedColors = {
 };
 let selectedPayment = null;
 
+const API_URL = 'http://localhost:5000/api';
+
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language') || 'en';
     document.getElementById('languageSelect').value = savedLang;
     updatePageTranslations();
+    
+    // Check API health on load
+    checkAPIHealth();
 });
 
 function changeLanguage(lang) {
@@ -53,6 +58,9 @@ function addToCart(product) {
     cart.push(item);
     const productName = product.charAt(0).toUpperCase() + product.slice(1);
     showNotification(`${productName} added to cart!`);
+    
+    // Optionally call OpenAI to get a dynamic product description
+    getProductDescription(product, color);
 }
 
 function selectPayment(method) {
@@ -96,6 +104,79 @@ function showNotification(message) {
     }, 2000);
 }
 
+// OpenAI Integration Functions
+
+async function checkAPIHealth() {
+    try {
+        const response = await fetch(`${API_URL}/health`);
+        const data = await response.json();
+        console.log('✓ API Health:', data);
+    } catch (error) {
+        console.warn('⚠️ API server is not running. Some features may be unavailable.');
+        console.warn('Start the server with: python app.py');
+    }
+}
+
+async function getProductDescription(product, color) {
+    try {
+        const response = await fetch(`${API_URL}/product-description`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ product, color })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            console.log('📝 AI Description:', data.description);
+            // You could display this in a tooltip or modal if desired
+        }
+    } catch (error) {
+        console.warn('Could not fetch AI description:', error.message);
+    }
+}
+
+async function getCustomerSupport(message) {
+    try {
+        const response = await fetch(`${API_URL}/customer-support`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            console.log('🤖 Support Response:', data.reply);
+            return data.reply;
+        }
+    } catch (error) {
+        console.error('Support chat error:', error);
+    }
+}
+
+async function getRecommendation(preference) {
+    try {
+        const response = await fetch(`${API_URL}/product-recommendations`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ preference })
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+            console.log('💡 Recommendation:', data.recommendation);
+            return data.recommendation;
+        }
+    } catch (error) {
+        console.error('Recommendation error:', error);
+    }
+}
+
 // Add slide animations
 const style = document.createElement('style');
 style.textContent = `
@@ -122,3 +203,4 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
